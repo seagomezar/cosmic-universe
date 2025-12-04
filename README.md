@@ -1,73 +1,86 @@
-# React + TypeScript + Vite
+# Hybrid AI Race Coach (AI Test Field)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance racing coach application that leverages a hybrid AI architecture to provide real-time and post-analysis feedback to drivers.
 
-Currently, two official plugins are available:
+## 🏎️ Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project demonstrates a **Hybrid AI Architecture** combining:
+- **Gemini Nano (Chrome Built-in AI):** For "Hot Path" advice. This runs locally in the browser with ultra-low latency (<50ms), providing immediate, critical safety and technique commands (e.g., "STABILIZE", "TRAIL BRAKE").
+- **Gemini 2.5 Flash (Cloud API):** For "Warm Path" advice. This runs in the cloud and provides deeper, persona-based coaching analysis (e.g., "Good hustle, scoot out" from Coach Tony or physics-based advice from Coach Rachel).
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dual-Path AI Coaching:**
+  - **Hot Path:** Immediate, imperative commands for safety and critical inputs.
+  - **Warm Path:** Detailed, stylistic advice based on selectable coach personas.
+- **Coach Personas:**
+  - **Tony:** Motivational, "feel-based" coach.
+  - **Rachel:** Analytical, physics-focused coach.
+  - **AJ:** Direct, hybrid engineer style.
+  - **Garmin:** Robotic, delta-optimization style.
+  - **Super AJ:** Dynamic switching between styles based on context.
+- **Real-time Telemetry Visualization:**
+  - GPS Track Map.
+  - G-Force Meter (Lateral & Longitudinal).
+  - Speed, Throttle, and Brake gauges.
+- **Audio Feedback:** Text-to-speech synthesis for both hot and warm advice, with priority handling to prevent overlapping.
+- **CSV Data Import:** Load race telemetry data from CSV files for simulation and analysis.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework:** React 19 + Vite
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Icons:** Lucide React
+- **AI:** Google Gemini Nano (Chrome Built-in AI) & Gemini API
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Setup & Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/seagomezar/ai-test-field.git
+    cd ai-test-field
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3.  **Configure Environment Variables:**
+    Create a `.env` file in the root directory and add your Gemini API key:
+    ```env
+    VITE_GEMINI_API_KEY=your_api_key_here
+    ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ⚙️ Browser Configuration (Gemini Nano)
+
+To enable the local "Hot Path" AI, you need to configure Chrome:
+
+1.  **Enable Flags:**
+    Go to `chrome://flags` and enable:
+    - **Prompt API for Gemini Nano**
+    - **Enforce On-Device Model Availability**
+
+2.  **Update Components:**
+    Go to `chrome://components`, find **Optimization Guide On Device Model**, and click "Check for update".
+
+3.  **Restart Chrome.**
+
+## 📦 Deployment
+
+This project is configured to deploy to **GitHub Pages** automatically using GitHub Actions.
+
+- **URL:** [https://seagomezar.github.io/ai-test-field/](https://seagomezar.github.io/ai-test-field/)
+- **Workflow:** Pushing to the `main` branch triggers a build and deployment to the `gh-pages` branch.
+
+### Manual Deployment
+You can also manually deploy using:
+```bash
+npm run deploy
 ```
