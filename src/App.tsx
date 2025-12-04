@@ -549,7 +549,7 @@ export default function GeminiRacingSim() {
           const cleanJson = text.substring(firstBrace, lastBrace + 1);
           const parsed = JSON.parse(cleanJson);
           const latency = Date.now() - start;
-          setColdAdvice({ message: parsed.message, reasoning: parsed.reasoning, latency, modelUsed: "Gemini 2.5 Flash", isError: false });
+          setColdAdvice({ message: parsed.message, reasoning: parsed.reasoning, latency, modelUsed: "Gemini 3 Pro", isError: false });
           setLog(l => [`[${activeCoach}] 🗣️ "${parsed.message}"`, ...l].slice(0, 10));
           audio.speak(parsed.message, 'LOW', activeCoach);
         } else {
@@ -610,7 +610,7 @@ export default function GeminiRacingSim() {
             <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest flex gap-2 items-center">
               <span className="flex items-center gap-1 text-orange-400"><Cpu size={10} /> Hot: Gemini Nano</span>
               <span className="text-zinc-600">|</span>
-              <span className="flex items-center gap-1 text-purple-400"><Flame size={10} /> Warm: Gemini 2.5 Flash</span>
+              <span className="flex items-center gap-1 text-purple-400"><Flame size={10} /> Warm: Gemini 3 Pro</span>
             </p>
           </div>
         </div>
